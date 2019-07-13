@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Registration page</title>
+	  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+	<div class="page_title">
+		<span>Registration Page</span>
+	</div>
+	<div class="res-block">
+		<form class="reg-from" method="post" action="/reg">
+			<h3></h3>
+			<input type="text" name="username" placeholder="Username">
+			<input type="password" name="password" placeholder="password">
+			<br>
+			<button type="submit" name="submit" value="submit">Submit</button>
+			<button type="reset" name="reset" value="reset">Reset</button>
+		</form>
+	</div>
+</body>
+</html>
