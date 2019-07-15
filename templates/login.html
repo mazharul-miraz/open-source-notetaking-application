@@ -1,10 +1,21 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Cloud Todo App</title>  
+	<title>User login</title>
 	  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
-	<h2>Successfull !  Login works fine</h2>
+
+	<div class="page_title">
+		<span>User Login</span>
+	</div>
+	<div class="res-block">
+		<form class="reg-from" method="post" action="/login">
+			<input type="email" name="emailid" placeholder="Email Address">
+			<input type="password" name="password" placeholder="password">
+			<br>
+			<button type="submit" name="submit" value="submit">Login</button>
+		</form>
+	</div>
 </body>
 </html>

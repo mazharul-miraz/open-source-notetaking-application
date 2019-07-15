@@ -40,7 +40,7 @@ h2{
 .reg-from button {
 	cursor: pointer;
 	text-align: center;
-	background: #CCFF90;
+	background: #FD971F;
 	padding: 10px 25px;
 	border: 0;
 	margin-right: 10px;
@@ -59,4 +59,34 @@ h2{
 	margin: 0 -65px;
 	font-size: 40px;
 	color: #FD971F
+}
+
+
+table.unstyledTable {
+	font-family: Verdana, Geneva, sans-serif;
+	border: 1px solid #e7e7e7;
+	text-align: center;
+	width: 100%;
+}
+table.unstyledTable td, table.unstyledTable th {
+	border-left: 1px solid #4a4a4a;
+}
+table.unstyledTable thead {
+	color: #FD971F;
+}
+table.unstyledTable thead th {
+	font-weight: normal;
+	border-bottom: 1px solid #4a4a4a;
+}
+
+.userinfo {
+	margin: 0 auto;
+	width: 900px;
+	padding: 20px 30px;
+	background: #fff;
+	margin: 48px auto 35px auto;
+}
+h3{
+
+	color: #fd971f;
 }
