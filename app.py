@@ -34,6 +34,15 @@ def reg():
     else:
 	    return render_template('reg.html')
 
+
+
+
+
+
+
+#   USER DASH START   #
+
+
 @app.route("/userdash", methods = ['GET','POST'])
 def userdash():
 
@@ -58,8 +67,8 @@ def userdash():
                 user_notes = db.notes.find({
                         "email": user_email,
                     })
-                print(user_notes)
-                return 'its okay'
+                return redirect("/userdash")
+                # return 'its okay'
 
             except Exception as e:
                 print(e)
@@ -74,11 +83,36 @@ def userdash():
             try:
                 greenpass = jwt.decode(token.encode('utf-8'), config.data["JWT_SECRET"], algorithms=['HS256'])
                 user_name =  greenpass['name']
-                return  render_template('userdash.html', name = user_name)
+                user_email =  greenpass['email']
+
+                UserNotes = db.notes.find({
+                    "email": user_email
+                })
+
+                note_list = []
+
+                for x in UserNotes:
+                    note_list.append(x)
+
+                # print(UserNotes)
+
+                return  render_template('userdash.html', userrrrr_name = user_name, notes = note_list)
             except Exception as e:
+                print(e)
                 resp = redirect(url_for('login'))
                 resp.set_cookie('token', '')
                 return resp
+
+
+
+#   USER DASH START   #
+
+
+
+
+
+
+
 
 def userLogin(request):
     uEmail = request.form['emailid']

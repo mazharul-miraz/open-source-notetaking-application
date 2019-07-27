@@ -8,7 +8,7 @@
 	<div class="user_block">
 		<div class="app_title">
 			<!-- <span class="app_name">Wellcome TO CloudTodo</span> -->
-			<span class="app_name">Wellcome {{ name }}</span>
+			<span class="app_name">Wellcome {{ userrrrr_name }}</span>
 
 		</div>
 		<div class="user-data">
@@ -25,6 +25,24 @@
 					</div>
 				</div>
 			</div>
+			<div class="saved_data">
+
+				{% for note in notes %}
+
+				<div class="data_card">
+					<div class="usersaved_data">
+						<h4>{{ note.note }}</h4>
+						<p>{{ note.message }}</p>
+					</div>
+				</div>
+				{% endfor %}
+
+				<!-- <div class="data_card">
+					<div class="usersaved_data">
+						<h4>Datatitle</h4>
+						<p>user data goes here</p>
+					</div>
+				</div> -->
 		</div>
 	</div>
 </body>

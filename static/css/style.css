@@ -106,3 +106,21 @@ h3{
 		text-align: center;
 }
 .app_name{}
+
+.saved_data {
+		background: #FAFAFA;
+		padding: 10px;
+		margin: 30px 0;
+		overflow: hidden;
+	}
+
+	.data_card {
+		background: #E2E2E2;
+		padding: 10px;
+		width: 180px;
+		float: left;
+		margin: 5px;
+	}
+
+	
+.usersaved_data{}
