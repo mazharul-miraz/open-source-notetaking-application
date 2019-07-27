@@ -9,17 +9,8 @@ mongoConnect = MongoClient()
 client = MongoClient('localhost', 27017)
 db = client.todo_app
 
-#try:
-#    db.user.insert_one({
-#        "name": "Miraz",
-#         "password": "123"
-#         })
-# except Exception as e:
-#         print(e)
-
 from flask import Flask
 app = Flask(__name__)
-
 
 @app.route("/")
 def approot():
@@ -29,16 +20,12 @@ def approot():
 def admin():
     return  render_template('admin.html')
 
-
-
 @app.route("/login", methods =['POST','GET'])
 def login():
     if request.method == 'POST':
         return userLogin(request)
     else:
         return render_template('login.html')
-
-
 
 @app.route("/reg", methods =['POST','GET'])
 def reg():
@@ -47,24 +34,51 @@ def reg():
     else:
 	    return render_template('reg.html')
 
-@app.route("/userdash")
+@app.route("/userdash", methods = ['GET','POST'])
 def userdash():
 
-    name = request.cookies.get('token')
+    if request.method == 'POST':
 
-    if name == None :
-        return redirect(url_for('login' ))
+        token = request.cookies.get('token')
+        if token == None :
+            return redirect(url_for('login' ))
+
+        else:
+            try:
+                greenpass = jwt.decode(token.encode('utf-8'), config.data["JWT_SECRET"], algorithms=['HS256'])
+                user_email =  greenpass['email']
+                note_title = request.form['note']
+                note_data =  request.form['message']
+                db.notes.insert_one({
+                    "note": note_title,
+                    "message":note_data,
+                    "email": user_email
+                })
+
+                user_notes = db.notes.find({
+                        "email": user_email,
+                    })
+                print(user_notes)
+                return 'its okay'
+
+            except Exception as e:
+                print(e)
+                resp = redirect(url_for('login'))
+                resp.set_cookie('token', '')
+                return resp
     else:
-        try:
-            greenpass = jwt.decode(name.encode('utf-8'), config.data["JWT_SECRET"], algorithms=['HS256'])
-            return  render_template('userdash.html')
-        except Exception as e:
-            resp = redirect(url_for('login'))
-            resp.set_cookie('token', '')
-            return resp
-
-
-
+        token = request.cookies.get('token')
+        if token == None :
+            return redirect(url_for('login' ))
+        else:
+            try:
+                greenpass = jwt.decode(token.encode('utf-8'), config.data["JWT_SECRET"], algorithms=['HS256'])
+                user_name =  greenpass['name']
+                return  render_template('userdash.html', name = user_name)
+            except Exception as e:
+                resp = redirect(url_for('login'))
+                resp.set_cookie('token', '')
+                return resp
 
 def userLogin(request):
     uEmail = request.form['emailid']
@@ -82,7 +96,7 @@ def userLogin(request):
                 'name': isUserExist['name'],
                 'email': isUserExist['email']
             }, config.data["JWT_SECRET"], algorithm='HS256')
-            resp = redirect(url_for('userdash', message='' ))
+            resp = redirect(url_for('userdash' ))
             resp.set_cookie('token', encoded_jwt)
             return resp
         else:

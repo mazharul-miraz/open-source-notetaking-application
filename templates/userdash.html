@@ -5,9 +5,27 @@
 	  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
-	<div class="page_title">
-		<span>Wellcome </span>
-    <h2>{{ uName }}</h2>
+	<div class="user_block">
+		<div class="app_title">
+			<!-- <span class="app_name">Wellcome TO CloudTodo</span> -->
+			<span class="app_name">Wellcome {{ name }}</span>
+
+		</div>
+		<div class="user-data">
+			<div class="sidebar"></div>
+			<div class="user_content">
+				<div class="user_note">
+					<div class="note_data">
+						<form action="/userdash" method="post">
+						<input type="text" name="note" placeholder="Note title"><br>
+					  <textarea name="message" rows="5" cols="25" placeholder="Type Your Note"></textarea>
+					  <br>
+					  <input type="submit" value="save">
+					</form>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
 </body>
 </html>

@@ -1,5 +1,5 @@
 body{
-	background: #F1F3F5;
+	background: #FAFAFA;
 	font-family: sans-serif;
 }
 
@@ -90,3 +90,19 @@ h3{
 
 	color: #fd971f;
 }
+
+
+.user_block{
+		margin: 0 auto;
+		padding: 20px 30px;
+		width: 700px;
+		background: #F1F3F4;
+		margin-top: 30px;
+}
+
+.app_title{
+		padding: 10px 20px;
+		margin: 10px 0 40px 0;
+		text-align: center;
+}
+.app_name{}
