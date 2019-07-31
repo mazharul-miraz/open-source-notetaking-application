@@ -79,3 +79,15 @@ textarea:focus {
     cursor: pointer;
     border: 0;
 }
+
+.user-reg {
+    padding: 30px 30px;
+    margin: 50px auto;
+}
+
+.reg-form {
+    background: #fff;
+    box-shadow: 0 0 36px rgba(0, 0, 0, 0.1);
+    padding: 30px 30px;
+    border-radius: 11px;
+}
