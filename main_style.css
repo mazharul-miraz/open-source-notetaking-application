@@ -91,3 +91,12 @@ textarea:focus {
     padding: 30px 30px;
     border-radius: 11px;
 }
+
+.admin-data {
+    margin: 60px 0 70px 0;
+}
+
+.data-table {
+    padding: 30px 0;
+    cursor: pointer;
+}
