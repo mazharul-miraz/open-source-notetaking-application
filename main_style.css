@@ -102,7 +102,13 @@ textarea:focus {
     cursor: pointer;
 }
 
-.app-des h2 {
+.app-des {
     text-align: center;
-    font-family: 'Saira Stencil One', cursive;
+    background: #eee;
+}
+
+.app-des {
+    text-align: center;
+    background: #eee;
+    padding: 60px 0;
 }
