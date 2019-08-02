@@ -14,25 +14,25 @@ app = Flask(__name__)
 
 @app.route("/")
 def approot():
-    return  render_template('index.html')
+    return  render_template('app-view.html')
 
 @app.route("/admin")
 def admin():
-    return  render_template('admin.html')
+    return  render_template('app-admin.html')
 
 @app.route("/login", methods =['POST','GET'])
 def login():
     if request.method == 'POST':
         return userLogin(request)
     else:
-        return render_template('login.html')
+        return render_template('app-login.html')
 
 @app.route("/reg", methods =['POST','GET'])
 def reg():
     if request.method == 'POST':
         return userRegistration(request)
     else:
-	    return render_template('reg.html')
+	    return render_template('app-reg.html')
 
 
 
@@ -96,7 +96,7 @@ def userdash():
 
                 # print(UserNotes)
 
-                return  render_template('userdash.html', userrrrr_name = user_name, notes = note_list)
+                return  render_template('dashboard.html', userrrrr_name = user_name, notes = note_list)
             except Exception as e:
                 print(e)
                 resp = redirect(url_for('login'))
@@ -164,3 +164,4 @@ def userRegistration(request):
 
 if __name__ == "__main__":
 	app.run(debug=True)
+

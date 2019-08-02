@@ -104,11 +104,11 @@ textarea:focus {
 
 .app-des {
     text-align: center;
-    background: #eee;
+    padding: 30px 0;
 }
 
-.app-des {
-    text-align: center;
-    background: #eee;
-    padding: 60px 0;
+.app-des h2 {
+    font-family: 'Saira Stencil One', cursive;
+    font-size: 65px;
+    margin-bottom: 20px;
 }
