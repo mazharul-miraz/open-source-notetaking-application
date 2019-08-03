@@ -4,6 +4,7 @@ from pymongo import MongoClient
 import bcrypt
 import jwt
 import config as config
+from bson.objectid import ObjectId
 
 mongoConnect = MongoClient()
 client = MongoClient('localhost', 27017)
@@ -28,24 +29,92 @@ def login():
     else:
         return render_template('app-login.html')
 
-@app.route("/reg", methods =['POST','GET'])
+@app.route("/register", methods =['POST','GET'])
 def reg():
     if request.method == 'POST':
         return userRegistration(request)
     else:
 	    return render_template('app-reg.html')
 
+@app.route("/signout", methods =['POST','GET'])
+def signout():
+    resp = redirect(url_for('login'))
+    resp.set_cookie('token', '')
+    return resp
+
+@app.route("/delnote", methods =['POST','GET'])
+def delnote():
+
+    noteId = request.args.get("id")
+    token = request.cookies.get('token')
+
+    if token == None :
+        return redirect(url_for('login' ))
+
+    else:
+        try:
+            userData = jwt.decode(token.encode('utf-8'), config.data["JWT_SECRET"], algorithms=['HS256'])
+            user_name =  userData['name']
+            user_email =  userData['email']
+
+            curNote = db.notes.find_one({
+                "_id": ObjectId(noteId)
+            })
+            print(curNote['email'])
+            print(user_email)
+
+            if curNote['email'] == user_email :
+                db.notes.delete_one({ "_id": ObjectId(noteId) })
+                return redirect("/dashboard")
+            else:
+                return redirect("/dashboard")
+        except Exception as e:
+            print(e)
+            return redirect("/dashboard")
+
+@app.route("/share", methods =['POST','GET'])
+def share():
+    if request.method == 'POST':     
+        noteId = request.args.get("id")
+        email = request.args.get("email")
+        isUserExist = db.user.find_one({"email": email})
+
+        if isUserExist != None:
+            return render_template('share.html', user_not_exist = true)
+        else:
+            db.notes.update_one({ 
+                "_id": ObjectId(noteId)
+                }, {
+                    "$set": { 
+                        "address": "Canyon 123"
+                        }
+                })
+    else:
+        noteId = request.args.get("id")
+        token = request.cookies.get('token')
+    
+        if noteId == None :
+            return redirect(url_for('login'))
+        elif token == None :
+            return redirect(url_for('login'))
+        else :
+            try:
+                userData = jwt.decode(token.encode('utf-8'), config.data["JWT_SECRET"], algorithms=['HS256'])
+                user_name =  userData['name']
+                user_email =  userData['email']
+
+                curNote = db.notes.find_one({
+                "_id": ObjectId(noteId)
+                })
+                return render_template('share.html', userrrrr_name = user_name, note = curNote)
+            except Exception as e:
+                print(e)
+                return redirect("/dashboard")
 
 
 
-
-
-
-#   USER DASH START   #
-
-
-@app.route("/userdash", methods = ['GET','POST'])
-def userdash():
+@app.route("/dashboard", methods = ['GET','POST'])
+def dashboard():
 
     if request.method == 'POST':
 
@@ -68,7 +137,7 @@ def userdash():
                 user_notes = db.notes.find({
                         "email": user_email,
                     })
-                return redirect("/userdash")
+                return redirect("/dashboard")
                 # return 'its okay'
 
             except Exception as e:
@@ -105,16 +174,6 @@ def userdash():
                 return resp
 
 
-
-#   USER DASH START   #
-
-
-
-
-
-
-
-
 def userLogin(request):
     uEmail = request.form['emailid']
     uPass = request.form['password']
@@ -131,7 +190,7 @@ def userLogin(request):
                 'name': isUserExist['name'],
                 'email': isUserExist['email']
             }, config.data["JWT_SECRET"], algorithm='HS256')
-            resp = redirect(url_for('userdash' ))
+            resp = redirect(url_for('dashboard' ))
             resp.set_cookie('token', encoded_jwt)
             return resp
         else:
@@ -157,7 +216,8 @@ def userRegistration(request):
             "password": uPass
         })
         # return "Registration successfull"
-        return  render_template('userdash.html')
+        # return  render_template('userdash.html')
+        return redirect(url_for('dashboard' ))
 
     print(isUserExist)
 

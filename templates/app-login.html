@@ -33,7 +33,10 @@
                 </ul>
                 <div class="form-inline my-2 my-lg-0" style="margin-right: 0;">
                     <ul class="navbar-nav mr-auto">
-                        <li class="nav-item dropdown">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/register">Join Us</a>
+                        </li>
+                        <!-- <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     UserName
                                   </a>
@@ -43,7 +46,7 @@
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="app-login.html">Sign out</a>
                             </div>
-                        </li>
+                        </li> -->
 
                     </ul>
 
@@ -58,17 +61,18 @@
             <div class="row">
                 <div class="col-md-4">
                     <div class="reg-form">
-                        <form>
+                        <form method="post" action="/login">
                             <div class="form-group">
                                 <label>Your Email</label>
-                                <input type="email" class="form-control" id="uEmail" placeholder="Example@email.com">
+                                <input type="email" class="form-control" name="emailid" id="uEmail" placeholder="Example@email.com">
                             </div>
                             <div class="form-group">
                                 <label>Password</label>
-                                <input type="password" class="form-control" id="uPass" placeholder="Password">
+                                <input type="password" class="form-control" name="password" id="uPass" placeholder="Password">
                             </div>
+                            <button type="submit" name="submit" value="submit" class="btn btn-primary btn-block">Login</button>
+
                         </form>
-                        <button type="submit" name="submit" value="submit" class="btn btn-primary btn-block">Login</button>
                     </div>
                 </div>
             </div>

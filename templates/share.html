@@ -53,81 +53,36 @@
 
     <div class="user-content">
         <div class="container ">
-            <div class="note-input">
-                <button class="btn btn-primary" style="
-                    float: right;
-                    margin: 30px 40px;
-                ">Create New</button>
-            </div>
 
             <div class="toggle-note">
                 <form action="/dashboard" method="post">
                     <div class="form-group">
-                        <input type="text" class="form-control" name="note" placeholder="Write a title ..">
+                        <input type="text" class="form-control" disabled name="note" placeholder="Write a title .." value="{{ note.note }}">
                     </div>
                     <div class="form-group">
-                        <textarea class="form-control" name="message" rows="3" placeholder="My note .. .."></textarea>
+                        <textarea class="form-control" name="message" disabled rows="3" placeholder="My note .. ..">{{ note.message }}</textarea>
                     </div>
-                    <button class="btn btn-primary" type="submit" value="save ">Save</button>
                 </form>
-
-            </div>
-        </div>
-    </div>
-
-    <div class="container ">
-        <h4 class="heading-title ">Mynote Note<span class="title-dec ">//</span></h4>
-        <div class="save-note ">
-            <div class="row ">
-
-                {% for note in notes %}
-                <div class="col-md-3 ">
-                    <div class="card " style="width: 18rem; ">
-                        <div class="card-body ">
-                            <h5 class="card-title ">{{ note.note }}</h5>
-                            <!-- <h6 class="card-subtitle mb-2 text-muted ">Date & Time</h6> -->
-                            <p class="card-text ">{{ note.message }}</p>
-                            <a class="card-link" href="/delnote?id={{ note._id }}">Delete</a>
-                            <!-- <a class="card-link" href="/share?id={{ note._id }}">Share With</a> -->
-                        </div>
+                <h4 style="margin: 27px 0;font-size: 20px;">Type a email for sharing</h4>
+                <form class="form-inline">
+                    <div class="form-group mx-sm-3 mb-2">
+                        <input type="email" class="form-control" id="inputPassword2" placeholder="Email">
                     </div>
-                </div>
-                {% endfor %}
+                    <button type="submit" class="btn btn-primary mb-2">Submit</button>
+                </form>
+            </div>
+            <div class="already-share">
+                <h4 style="margin: 27px 0;font-size: 20px;">Already shared emails</h4>
 
-
-                <div class="col-md-3 ">
+                <div class="alert alert-success" role="alert">
+                    roy@rmail.com
                 </div>
-                <div class="col-md-3 ">
+                <div class="alert alert-success" role="alert">
+                    roy@rmail.com
                 </div>
             </div>
         </div>
-    </div>
 
-    <!-- <div class="container ">
-        <h4 class="heading-title ">Shared Note<span class="title-dec ">//</span></h4>
-        <div class="share-note ">
-            <div class="row ">
-                <div class="col-md-3 ">
-                    {% for note in notes %}
-                    <div class="card " style="width: 18rem; ">
-                        <div class="card-body ">
-                            <h5 class="card-title ">{{ note.note }}</h5>
-                            <h6 class="card-subtitle mb-2 text-muted ">Date & Time</h6>
-                            <p class="card-text ">{{ note.message }}</p>
-                            <a href="# " class="card-link ">Delete</a>
-                            <a href="# " class="card-link ">Share With</a>
-                        </div>
-                    </div>
-                    {% endfor %}
-                </div>
-            </div>
-        </div>
-    </div> -->
-
-    <div class="footer ">
-        <div class="container ">
-            <p>Cnote a dead simple free note keeping application.</p>
-        </div>
     </div>
 
 
