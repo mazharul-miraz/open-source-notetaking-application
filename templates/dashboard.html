@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="main_style.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
     <title>keep Your Note in Cloud</title>
 </head>
 
@@ -22,13 +22,13 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto" style="margin-left: 0;">
                     <li class="nav-item active">
-                        <a class="nav-link" href="dashboard.html">Home <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">GitHub</a>
+                        <a class="nav-link" href="https://github.com/mazharul-miraz/NoteRepo">GitHub</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Documentation</a>
+                        <a class="nav-link" href="https://github.com/mazharul-miraz/NoteRepo">Documentation</a>
                     </li>
                 </ul>
                 <div class="form-inline my-2 my-lg-0" style="margin-right: 0;">
@@ -64,30 +64,30 @@
             <div class="toggle-note">
                 <form>
                     <div class="form-group">
-                        <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Write a title ..">
+                        <input type="text" class="form-control" name="note" placeholder="Write a title ..">
                     </div>
                     <div class="form-group">
-                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="My note .. .."></textarea>
+                        <textarea class="form-control" name="message" rows="3" placeholder="My note .. .."></textarea>
                     </div>
-                    <button class="btn btn-primary">Save</button>
+                    <button class="btn btn-primary type=" submit " value="save ">Save</button>
                 </form>
 
             </div>
         </div>
     </div>
 
-    <div class="container">
-        <h4 class="heading-title">Mynote Note<span class="title-dec">//</span></h4>
-        <div class="save-note">
-            <div class="row">
-                <div class="col-md-3">
-                    <div class="card" style="width: 18rem;">
-                        <div class="card-body">
-                            <h5 class="card-title">Note Title</h5>
-                            <h6 class="card-subtitle mb-2 text-muted">Date & Time</h6>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            <a href="#" class="card-link">Delete</a>
-                            <a href="#" class="card-link">Share With</a>
+    <div class="container ">
+        <h4 class="heading-title ">Mynote Note<span class="title-dec ">//</span></h4>
+        <div class="save-note ">
+            <div class="row ">
+                <div class="col-md-3 ">
+                    <div class="card " style="width: 18rem; ">
+                        <div class="card-body ">
+                            <h5 class="card-title ">Note Title</h5>
+                            <h6 class="card-subtitle mb-2 text-muted ">Date & Time</h6>
+                            <p class="card-text ">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            <a href="# " class="card-link ">Delete</a>
+                            <a href="# " class="card-link ">Share With</a>
                         </div>
                     </div>
                 </div>
@@ -95,27 +95,29 @@
         </div>
     </div>
 
-    <div class="container">
-        <h4 class="heading-title">Shared Note<span class="title-dec">//</span></h4>
-        <div class="share-note">
-            <div class="row">
-                <div class="col-md-3">
-                    <div class="card" style="width: 18rem;">
-                        <div class="card-body">
-                            <h5 class="card-title">Note Title</h5>
-                            <h6 class="card-subtitle mb-2 text-muted">Date & Time</h6>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            <a href="#" class="card-link">Delete</a>
-                            <a href="#" class="card-link">Share With</a>
+    <div class="container ">
+        <h4 class="heading-title ">Shared Note<span class="title-dec ">//</span></h4>
+        <div class="share-note ">
+            <div class="row ">
+                <div class="col-md-3 ">
+                    {% for note in notes %}
+                    <div class="card " style="width: 18rem; ">
+                        <div class="card-body ">
+                            <h5 class="card-title ">{{ note.note }}</h5>
+                            <h6 class="card-subtitle mb-2 text-muted ">Date & Time</h6>
+                            <p class="card-text ">{{ note.message }}</p>
+                            <a href="# " class="card-link ">Delete</a>
+                            <a href="# " class="card-link ">Share With</a>
                         </div>
                     </div>
+                    {% endfor %}
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="footer">
-        <div class="container">
+    <div class="footer ">
+        <div class="container ">
             <p>Cnote a dead simple free note keeping application.</p>
         </div>
     </div>

@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="main_style.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
     <title>App View</title>
 </head>
 
@@ -17,9 +17,7 @@
             <div class="app-des">
                 <h2>Cnote</h2>
                 <h6>An open-source personal note keeping project.</h6>
-                <button type="button" class="btn btn-primary btn-lg" style="
-    margin-top: 24px;
-">Project</button>
+                <a class="btn btn-primary" href="/login" role="button" style="margin-top: 24px">project</a>
             </div>
         </div>
     </div>
